@@ -37,7 +37,7 @@ const colorBoard = function() {
   }
 }
 
-
+colorBoard();
 
 //end document.ready
 // });
