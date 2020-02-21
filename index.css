@@ -1,0 +1,33 @@
+.box {
+  position: relative;
+  width: 20%;
+  height: 0;
+  padding-bottom: 20%;
+}
+
+.inner {
+  font-size: 4vw;
+  font-weight: bold;
+  position: absolute;
+  top: 18%;
+  left: 40%;
+}
+
+#score_value {
+  text-align: center;
+  font-size: 3vw;
+  font-weight: bold;
+}
+
+.purple1 {
+  background-color: rgb(205, 155, 255);
+}
+.purple2 {
+  background-color: rgb(205, 175, 255);
+}
+.purple3 {
+  background-color: rgb(205, 195, 255);
+}
+.purple4 {
+  background-color: rgb(205, 215, 255);
+}
