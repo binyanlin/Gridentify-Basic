@@ -39,5 +39,12 @@ const colorBoard = function() {
 
 colorBoard();
 
+
+//onClick event
+$(document).on("click", ".box", function() {
+  $(this).toggleClass("selected");
+  
+});
+
 //end document.ready
 // });
