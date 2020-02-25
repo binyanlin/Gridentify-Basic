@@ -6,8 +6,8 @@ const board = [];
 const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
 
-//initializing board function
-const generateBoard = function() {
+//initializing board values function
+const rollBoard = function() {
   while (board.length<5) {
     let arr1 = [];
     for(let i=0; i<5; i++) {
@@ -16,8 +16,17 @@ const generateBoard = function() {
     board.push(arr1);
   }
 }
+rollBoard();
+console.log(board);
 
-generateBoard();
+//generating the HTML for the board
+const generateBoard = () => {
+  for (let i=0; i<5; i++) {
+    for (let j=0; j<5; j++) {
+      
+    }
+  }
+}
 
 const colorBoard = function() {
   for (let i=0; i<5; i++) {
