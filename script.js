@@ -23,10 +23,16 @@ console.log(board);
 const generateBoard = () => {
   for (let i=0; i<5; i++) {
     for (let j=0; j<5; j++) {
-      
+      $(".row"+(i+1)).append(`
+      <div id="${xCoord[i] + yCoord[j]}" class="box border border-dark">
+                  <div id="${xCoord[i] + yCoord[j] + "val"}" class="inner">${board[i][j]}</div>
+                </div>
+      `)
     }
   }
 }
+
+generateBoard();
 
 const colorBoard = function() {
   for (let i=0; i<5; i++) {
