@@ -25,7 +25,7 @@ const generateBoard = () => {
     for (let j=0; j<5; j++) {
       $(".row"+(i+1)).append(`
       <div id="${xCoord[i] + yCoord[j]}" class="box border border-dark">
-                  <div id="${xCoord[i] + yCoord[j] + "val"}" class="inner">${board[i][j]}</div>
+                  <div id="${xCoord[i] + yCoord[j] + "val"}" class="inner noselect">${board[i][j]}</div>
                 </div>
       `)
     }
@@ -55,11 +55,30 @@ const colorBoard = function() {
 colorBoard();
 
 
-//onClick event
-$(document).on("click", ".box", function() {
-  $(this).toggleClass("selected");
-  
+//checks if board move is legal, returns true/false
+const isValid = () => {
+  return false;
+}
+
+//onClick events section
+
+//adds class selected on anything held down and hovered over
+$(document).on("mousedown", ".box", function() {
+  $(this).addClass("selected");
+
+  $(document).on("mouseover", ".box", function() {
+    //create function for checking if move is allowed, returns true/false
+    if (isValid()) {
+      $(this).addClass("selected");
+    }
+  });
 });
+
+//removes class selected and sees if move is valid
+$(document).on("mouseup", ".body", function() {
+  $(".selected").removeClass("selected");
+});
+
 
 //end document.ready
 // });

@@ -19,15 +19,30 @@
   font-weight: bold;
 }
 
+.selected {
+  background-color:red !important;
+}
+
 .purple4 {
-  background-color: rgb(205, 155, 255) !important; 
+  background-color: rgb(205, 155, 255); 
 }
 .purple3 {
-  background-color: rgb(205, 175, 255) !important;
+  background-color: rgb(205, 175, 255);
 }
 .purple2 {
-  background-color: rgb(205, 195, 255) !important;
+  background-color: rgb(205, 195, 255);
 }
 .purple1 {
-  background-color: rgb(205, 215, 255) !important;
+  background-color: rgb(205, 215, 255);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+  -webkit-user-drag: none;
 }
