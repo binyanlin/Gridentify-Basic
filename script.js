@@ -5,15 +5,9 @@
 const board = [];
 const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
-let selection = false;  
-let validM = [];
-const convertX = {
-  1: "A",
-  2: "B",
-  3: "C",
-  4: "D",
-  5: "E"
-}
+let selection = false;  //switch variable for checking mouseover
+let validM = [];  //array of valid next moves possible
+let scoreArray = []; //stores the potential array of numbers to check if valid
 
 //initializing board values function
 const rollBoard = function() {
@@ -102,26 +96,32 @@ const isValid = (move, validMoves) => {
 
 //adds class selected on anything held down and hovered over
 $(document).on("mousedown", ".box", function() {
-  $(this).addClass("selected");
-  let cur = $(this).attr("id");
-  selection = true;
-  validM = traverse(cur);
-  console.log(validM);
+  if (!$(this).hasClass("selected")) {
+    $(this).addClass("selected");
+    let cur = $(this).attr("id");
+    selection = true;
+    validM = traverse(cur);
+    console.log(validM);
+  }
+});
 
-  $(document).on("mouseover", ".box", function () {
-    //create function for checking if move is allowed, returns true/false
-    if (selection) {
-      let move = $(this).attr("id");
+$(document).on("mouseover", ".box", function () {
+  //create function for checking if move is allowed, returns true/false
+  if (selection) {
+    let move = $(this).attr("id");
+    if (!$("#"+move).hasClass("selected")) {
+
       console.log(move, "THis is current hover");
 
       if (isValid(move, validM)) {
-        $("#"+move).addClass("selected");
-        validM = traverse(move);
+      $("#"+move).addClass("selected");
+      validM = traverse(move);
       }
     }
+  }
 
-  });
 });
+
 
 //removes class selected and sees if move is valid
 $(document).on("mouseup", ".body", function() {
