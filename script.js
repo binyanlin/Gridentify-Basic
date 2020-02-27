@@ -100,7 +100,7 @@ const addScore = (scoreArray) => {
   let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
   score += points;
   $("#scoreValue").text(score);
-
+  return points;
 }
 
 //onClick events section
@@ -114,6 +114,7 @@ $(document).on("mousedown", ".box", function() {
     validM = traverse(cur);
     let target = $(this).children().text();
     scoreArray.push(target);
+    moveStack.push(cur);
     console.log(validM);
   }
 });
@@ -128,8 +129,19 @@ $(document).on("mouseover", ".box", function () {
       $("#"+move).addClass("selected");
       let target = $(this).children().text();
       scoreArray.push(target);
+      moveStack.push(move);
       validM = traverse(move);
       }
+    }
+  //interacting with the stack function
+    if ($("#"+move).hasClass("selected") && moveStack.indexOf(move)>-1 && moveStack.indexOf(move)!== moveStack.length-1) {
+      while(moveStack.length-1 > moveStack.indexOf(move)) {
+        let remove = moveStack.pop();
+        $("#"+remove).removeClass("selected");
+        scoreArray.pop();
+        validM = traverse(move);
+      }
+      console.log(moveStack, scoreArray);
     }
   }
 });
@@ -150,11 +162,10 @@ $(document).on("mouseup", ".box", function() {
     //if scoreArray is all same number, then run score function
     let scoreSet = new Set(scoreArray);
     if (scoreSet.size == 1) {
-      addScore(scoreArray);
-  
+      let sum = addScore(scoreArray);
+      $(this).children().text(sum);
     }
   }
-
   clearFunc();
 });
 
