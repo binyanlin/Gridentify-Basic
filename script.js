@@ -80,7 +80,6 @@ const traverse = (point) => {
   if(xVal<4) {
     validMoves.push(xCoord[xVal+1]+y);
   }
-  console.log(validMoves);
   return validMoves;
 }
 
@@ -101,6 +100,8 @@ $(document).on("mousedown", ".box", function() {
     let cur = $(this).attr("id");
     selection = true;
     validM = traverse(cur);
+    let target = $(this).children().text();
+    scoreArray.push(target);
     console.log(validM);
   }
 });
@@ -115,11 +116,12 @@ $(document).on("mouseover", ".box", function () {
 
       if (isValid(move, validM)) {
       $("#"+move).addClass("selected");
+      let target = $(this).children().text();
+      scoreArray.push(target);
       validM = traverse(move);
       }
     }
   }
-
 });
 
 
@@ -128,6 +130,8 @@ $(document).on("mouseup", ".body", function() {
   $(".selected").removeClass("selected");
   selection = false;
   validM.length = 0;
+  console.log(scoreArray);
+  scoreArray.length=0;
 });
 
 
