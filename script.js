@@ -2,7 +2,7 @@
 //start code
 
 //define variables
-const board = [];
+const board = []; // 5x5 board that will be updated as game progresses
 const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
 let selection = false;  //switch variable for checking mouseover
@@ -98,7 +98,16 @@ const isValid = (move, validMoves) => {
   return false; 
 }
 
-//adds a pre-checked list of scores if valid
+//gameover function: will check if gameover and run gameover screen if true
+const gameOver = () => {
+  //to game over: must have all adjacent tiles be a different value
+
+}
+
+
+
+
+//adds up the scores if valid, updates the board array, updates the page, and calls the color function to recolor
 const addScore = (scoreArray) => {
   let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
   score += points;
@@ -147,7 +156,7 @@ $(document).on("mouseover", ".box", function () {
       validM = traverse(move);
       }
     }
-  //interacting with the stack function
+  //interacting with the stack function, aka the undo 
     if ($("#"+move).hasClass("selected") && moveStack.indexOf(move)>-1 && moveStack.indexOf(move)!== moveStack.length-1) {
       while(moveStack.length-1 > moveStack.indexOf(move)) {
         let remove = moveStack.pop();
