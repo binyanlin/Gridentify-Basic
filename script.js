@@ -6,6 +6,14 @@ const board = [];
 const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
 
+const convertX = {
+  1: "A",
+  2: "B",
+  3: "C",
+  4: "D",
+  5: "E"
+}
+
 //initializing board values function
 const rollBoard = function() {
   while (board.length<5) {
@@ -54,6 +62,32 @@ const colorBoard = function() {
 
 colorBoard();
 
+//checks traversal on board, returns valid moves (up to 4)
+const traverse = (point) => {
+  let x = point[0];
+  let y = point[1];
+  let xVal = xCoord.indexOf(x);
+  let yVal = yCoord.indexOf(y);
+  const validMoves = [];
+  //up
+  if (yVal>0) {
+    validMoves.push(x+yCoord[yVal-1]);
+  }
+  //down
+  if (yVal<4) {
+    validMoves.push(x+yCoord[yVal+1]);
+  }
+  //left
+  if (xVal>0) {
+    validMoves.push(xCoord[xVal-1]+y);
+  }
+  //right
+  if(xVal<4) {
+    validMoves.push(xCoord[xVal+1]+y);
+  }
+  console.log(validMoves);
+  return validMoves;
+}
 
 //checks if board move is legal, returns true/false
 const isValid = () => {
@@ -65,7 +99,9 @@ const isValid = () => {
 //adds class selected on anything held down and hovered over
 $(document).on("mousedown", ".box", function() {
   $(this).addClass("selected");
-
+  let cur = $(this).attr("id");
+  console.log(cur);
+  traverse(cur);
   $(document).on("mouseover", ".box", function() {
     //create function for checking if move is allowed, returns true/false
     if (isValid()) {
