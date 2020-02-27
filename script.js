@@ -100,7 +100,14 @@ const addScore = (scoreArray) => {
   let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
   score += points;
   $("#scoreValue").text(score);
-  return points;
+  let lastMove = moveStack.pop();
+  scoreArray.pop();
+  $("#"+lastMove).children().text(points);
+  while (scoreArray.length !== 0) {
+    let randomNum = Math.ceil(Math.random()*3);
+    $("#"+moveStack.pop()).children().text(randomNum);
+    scoreArray.pop();
+  }
 }
 
 //onClick events section
@@ -158,12 +165,11 @@ const clearFunc = () => {
 //removes class selected and sees if move is valid
 $(document).on("mouseup", ".box", function() {
   if ($(this).hasClass("selected")) {
-    //if scoreArray is all same number, then run score function
     if (scoreArray.length >1) {
         let scoreSet = new Set(scoreArray);
+      //if scoreArray is all same number, then run score function, also updates missing boxes with new random number
       if (scoreSet.size == 1) {
-        let sum = addScore(scoreArray);
-        $(this).children().text(sum);
+        addScore(scoreArray);
       }
     }
   }
