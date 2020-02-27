@@ -154,8 +154,8 @@ $(document).on("mouseup", ".body", function() {
   clearFunc();
 });
 
-$(document).on("mouseover", ".body", function() {
-  clearFunc();
+$(document).on("mouseleave", ".grid", function() {
+    clearFunc();
 });
 
 
