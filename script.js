@@ -17,7 +17,6 @@ const rollBoard = function() {
   }
 }
 rollBoard();
-console.log(board);
 
 //generating the HTML for the board
 const generateBoard = () => {
@@ -34,6 +33,7 @@ const generateBoard = () => {
 
 generateBoard();
 
+//adds color scheme to the board via css classes
 const colorBoard = function() {
   for (let i=0; i<5; i++) {
     for (let j=0; j<5; j++) {
