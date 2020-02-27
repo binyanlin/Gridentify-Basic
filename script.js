@@ -5,7 +5,8 @@
 const board = [];
 const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
-
+let selection = false;  
+let validM = [];
 const convertX = {
   1: "A",
   2: "B",
@@ -90,8 +91,11 @@ const traverse = (point) => {
 }
 
 //checks if board move is legal, returns true/false
-const isValid = () => {
-  return false;
+const isValid = (move, validMoves) => {
+  if (validMoves.indexOf(move)>-1) {
+    return true;
+  }
+  return false; 
 }
 
 //onClick events section
@@ -100,19 +104,30 @@ const isValid = () => {
 $(document).on("mousedown", ".box", function() {
   $(this).addClass("selected");
   let cur = $(this).attr("id");
-  console.log(cur);
-  traverse(cur);
-  $(document).on("mouseover", ".box", function() {
+  selection = true;
+  validM = traverse(cur);
+  console.log(validM);
+
+  $(document).on("mouseover", ".box", function () {
     //create function for checking if move is allowed, returns true/false
-    if (isValid()) {
-      $(this).addClass("selected");
+    if (selection) {
+      let move = $(this).attr("id");
+      console.log(move, "THis is current hover");
+
+      if (isValid(move, validM)) {
+        $("#"+move).addClass("selected");
+        validM = traverse(move);
+      }
     }
+
   });
 });
 
 //removes class selected and sees if move is valid
 $(document).on("mouseup", ".body", function() {
   $(".selected").removeClass("selected");
+  selection = false;
+  validM.length = 0;
 });
 
 
