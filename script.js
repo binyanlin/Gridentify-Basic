@@ -157,13 +157,14 @@ const clearFunc = () => {
 
 //removes class selected and sees if move is valid
 $(document).on("mouseup", ".box", function() {
-  console.log(this);
   if ($(this).hasClass("selected")) {
     //if scoreArray is all same number, then run score function
-    let scoreSet = new Set(scoreArray);
-    if (scoreSet.size == 1) {
-      let sum = addScore(scoreArray);
-      $(this).children().text(sum);
+    if (scoreArray.length >1) {
+        let scoreSet = new Set(scoreArray);
+      if (scoreSet.size == 1) {
+        let sum = addScore(scoreArray);
+        $(this).children().text(sum);
+      }
     }
   }
   clearFunc();
