@@ -98,13 +98,26 @@ const isValid = (move, validMoves) => {
   return false; 
 }
 
-//gameover function: will check if gameover and run gameover screen if true
-const gameOver = () => {
-  //to game over: must have all adjacent tiles be a different value
-
-}
-
-
+//gameover function: returns true if game is end or false 
+const gameOver = (board) => {
+  for (let i=0; i<5; i++) {
+    for (let j=0; j<5; j++) {
+      if (j>0) {
+        if (board[i][j] == board[i][j-1]) {
+          console.log(i, j, board[i][j], board[i][j-1], "left");
+          return false;
+        }
+      }
+      if (i>0) {
+        if (board[i][j] == board[i-1][j]) {
+          console.log(i,j, board[i][j], board[i-1][j], "up");
+          return false;
+        }
+      }
+    }
+  }
+  return true;
+};
 
 
 //adds up the scores if valid, updates the board array, updates the page, and calls the color function to recolor
@@ -117,14 +130,23 @@ const addScore = (scoreArray) => {
   $("#"+lastMove).children().text(points);
   $("#"+lastMove).removeClass("purple1 purple2 purple3 purple4");
   $("#"+lastMove).addClass(color(points));
+  board[xCoord.indexOf(lastMove[0])][parseInt(lastMove[1])-1] = points;
+  
   while (scoreArray.length !== 0) {
     let randomNum = Math.ceil(Math.random()*3);
-    let curBox = "#"+moveStack.pop();
-    $(curBox).children().text(randomNum);
-    $(curBox).removeClass("purple1 purple2 purple3 purple4");
-    $(curBox).addClass(color(randomNum));
+    let curBox = moveStack.pop();
+    $("#"+curBox).children().text(randomNum);
+    $("#"+curBox).removeClass("purple1 purple2 purple3 purple4");
+    $("#"+curBox).addClass(color(randomNum));
+    board[xCoord.indexOf(curBox[0])][parseInt(curBox[1])-1] = randomNum;
     scoreArray.pop();
   }
+
+  // game over functions run in here
+  if (gameOver(board)) {
+    $("#scoreValue").append(`<h3>GAME OVER</h3>`);
+    //scoring functions go here
+  };
 }
 
 //onClick events section
