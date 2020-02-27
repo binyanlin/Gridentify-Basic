@@ -8,6 +8,7 @@ const yCoord = ["1", "2", "3", "4", "5"];
 let selection = false;  //switch variable for checking mouseover
 let validM = [];  //array of valid next moves possible
 let scoreArray = []; //stores the potential array of numbers to check if valid
+let score = 0; //the score 
 
 //initializing board values function
 const rollBoard = function() {
@@ -91,6 +92,14 @@ const isValid = (move, validMoves) => {
   return false; 
 }
 
+//adds a pre-checked list of scores if valid
+const addScore = (scoreArray) => {
+  let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
+  score += points;
+  $("#scoreValue").text(score);
+  return points;
+}
+
 //onClick events section
 
 //adds class selected on anything held down and hovered over
@@ -112,8 +121,6 @@ $(document).on("mouseover", ".box", function () {
     let move = $(this).attr("id");
     if (!$("#"+move).hasClass("selected")) {
 
-      console.log(move, "THis is current hover");
-
       if (isValid(move, validM)) {
       $("#"+move).addClass("selected");
       let target = $(this).children().text();
@@ -124,15 +131,33 @@ $(document).on("mouseover", ".box", function () {
   }
 });
 
+//function to clear selections if mouse hovered outside boxes or if mouseup finished
+const clearFunc = () => {
+  selection = false;
+  validM.length = 0;
+  scoreArray.length = 0;
+  $(".selected").removeClass("selected");
+}
 
 //removes class selected and sees if move is valid
 $(document).on("mouseup", ".body", function() {
-  $(".selected").removeClass("selected");
-  selection = false;
-  validM.length = 0;
-  console.log(scoreArray);
-  scoreArray.length=0;
+
+  if ($(this).hasClass("selected")) {
+    console.log(scoreArray);
+    //if scoreArray is all same number, then run score function
+    let scoreSet = new Set(scoreArray);
+    if (scoreSet.size == 1) {
+      let sum = addScore(scoreArray);
+  
+    }
+  }
+  clearFunc();
 });
+
+$(document).on("mouseover", ".body", function() {
+  clearFunc();
+});
+
 
 
 //end document.ready
