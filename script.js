@@ -39,20 +39,24 @@ const generateBoard = () => {
 
 generateBoard();
 
+const color = (position) => {
+  switch (position) {
+    case 1:
+      return "purple1";
+    case 2:
+      return "purple2";
+    case 3:
+      return "purple3";
+    default:
+      return "purple4";
+  }
+}
+
 //adds color scheme to the board via css classes
 const colorBoard = function() {
   for (let i=0; i<5; i++) {
     for (let j=0; j<5; j++) {
-      let temp;
-      if (board[i][j] == 1) {
-        temp = "purple1";
-      } else if (board[i][j] == 2) {
-        temp = "purple2";
-      } else if (board[i][j] == 3) {
-        temp = "purple3";
-      } else {
-        temp = "purple4"
-      }
+      let temp = color(board[i][j]);
       $("#" + xCoord[i] + yCoord[j]).addClass(temp);
     }
   }
@@ -96,16 +100,20 @@ const isValid = (move, validMoves) => {
 
 //adds a pre-checked list of scores if valid
 const addScore = (scoreArray) => {
-  console.log("addscore is hit")
   let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
   score += points;
   $("#scoreValue").text(score);
   let lastMove = moveStack.pop();
   scoreArray.pop();
   $("#"+lastMove).children().text(points);
+  $("#"+lastMove).removeClass("purple1 purple2 purple3 purple4");
+  $("#"+lastMove).addClass(color(points));
   while (scoreArray.length !== 0) {
     let randomNum = Math.ceil(Math.random()*3);
-    $("#"+moveStack.pop()).children().text(randomNum);
+    let curBox = "#"+moveStack.pop();
+    $(curBox).children().text(randomNum);
+    $(curBox).removeClass("purple1 purple2 purple3 purple4");
+    $(curBox).addClass(color(randomNum));
     scoreArray.pop();
   }
 }
@@ -122,7 +130,6 @@ $(document).on("mousedown", ".box", function() {
     let target = $(this).children().text();
     scoreArray.push(target);
     moveStack.push(cur);
-    console.log(validM);
   }
 });
 
@@ -148,7 +155,6 @@ $(document).on("mouseover", ".box", function () {
         scoreArray.pop();
         validM = traverse(move);
       }
-      console.log(moveStack, scoreArray);
     }
   }
 });
