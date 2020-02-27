@@ -7,8 +7,10 @@ const xCoord = ["A", "B", "C", "D", "E"];
 const yCoord = ["1", "2", "3", "4", "5"];
 let selection = false;  //switch variable for checking mouseover
 let validM = [];  //array of valid next moves possible
+let moveStack = []; //stores moves made in order
 let scoreArray = []; //stores the potential array of numbers to check if valid
-let score = 0; //the score 
+let score = 0; //the score
+
 
 //initializing board values function
 const rollBoard = function() {
@@ -94,10 +96,11 @@ const isValid = (move, validMoves) => {
 
 //adds a pre-checked list of scores if valid
 const addScore = (scoreArray) => {
+  console.log("addscore is hit")
   let points = scoreArray.reduce((a,b)=>parseInt(a)+parseInt(b));
   score += points;
   $("#scoreValue").text(score);
-  return points;
+
 }
 
 //onClick events section
@@ -136,21 +139,22 @@ const clearFunc = () => {
   selection = false;
   validM.length = 0;
   scoreArray.length = 0;
+  moveStack.length = 0;
   $(".selected").removeClass("selected");
 }
 
 //removes class selected and sees if move is valid
-$(document).on("mouseup", ".body", function() {
-
+$(document).on("mouseup", ".box", function() {
+  console.log(this);
   if ($(this).hasClass("selected")) {
-    console.log(scoreArray);
     //if scoreArray is all same number, then run score function
     let scoreSet = new Set(scoreArray);
     if (scoreSet.size == 1) {
-      let sum = addScore(scoreArray);
+      addScore(scoreArray);
   
     }
   }
+
   clearFunc();
 });
 
