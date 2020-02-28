@@ -42,13 +42,13 @@ generateBoard();
 const color = (position) => {
   switch (position) {
     case 1:
-      return "purple1";
+      return "green1";
     case 2:
-      return "purple2";
+      return "green2";
     case 3:
-      return "purple3";
+      return "green3";
     default:
-      return "purple4";
+      return "green4";
   }
 }
 
@@ -128,7 +128,7 @@ const addScore = (scoreArray) => {
   let lastMove = moveStack.pop();
   scoreArray.pop();
   $("#"+lastMove).children().text(points);
-  $("#"+lastMove).removeClass("purple1 purple2 purple3 purple4");
+  $("#"+lastMove).removeClass("green1 green2 green3 green4");
   $("#"+lastMove).addClass(color(points));
   board[xCoord.indexOf(lastMove[0])][parseInt(lastMove[1])-1] = points;
   
@@ -136,7 +136,7 @@ const addScore = (scoreArray) => {
     let randomNum = Math.ceil(Math.random()*3);
     let curBox = moveStack.pop();
     $("#"+curBox).children().text(randomNum);
-    $("#"+curBox).removeClass("purple1 purple2 purple3 purple4");
+    $("#"+curBox).removeClass("green1 green2 green3 green4");
     $("#"+curBox).addClass(color(randomNum));
     board[xCoord.indexOf(curBox[0])][parseInt(curBox[1])-1] = randomNum;
     scoreArray.pop();
