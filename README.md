@@ -6,15 +6,18 @@ Practice cloning gridentify html/css and basic js backbone (to be upgraded into 
 
 ## Important Concepts Used:
 
-jQuery interaction with DOM elements on HTML
+-jQuery interaction with DOM elements on HTML
 
-CSS styling and Bootstrap
+-CSS styling and Bootstrap
 
-Graph traversal logic
+-Graph traversal logic
 
-Implementation of stack data structure and undo/backtracking
+-Implementation of stack data structure and undo/backtracking
 
-Event listeners
+-Event listeners, drag features
+
+-Media queries for responsive design
+
 
 
 #### Future Steps:
