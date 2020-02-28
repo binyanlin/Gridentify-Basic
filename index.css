@@ -3,22 +3,47 @@
   width: 20%;
   height: 0;
   padding-bottom: 20%;
+  text-align: center;
 }
 
 .inner {
-  font-size: 4vw;
+  font-size: 3em;
   font-weight: bold;
-  position: absolute;
-  top: 18%;
-  left: 40%;
+  display: inline-block;
+  margin: auto;
 }
 
 #scoreValue {
   text-align: center;
-  font-size: 3vw;
+  font-size: 3em;
   font-weight: bold;
 }
 
+@media only screen and (min-width: 800px) {
+  .inner {
+    font-size: 3em;
+    font-weight: bold;
+    display: inline-block;
+    margin: auto;
+    padding-top: 10%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .inner {
+    font-size: 4em;
+    font-weight: bold;
+    display: inline-block;
+    margin: auto;
+    padding-top: 15%;
+  }
+
+  #scoreValue {
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+  }
+}
 .selected {
   background-color:green !important;
 }
