@@ -18,6 +18,8 @@ Practice cloning gridentify html/css and basic js backbone (to be upgraded into 
 
 -Media queries for responsive design
 
+-Local storage and cookies
+
 
 
 #### Future Steps:
