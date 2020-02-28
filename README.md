@@ -7,11 +7,17 @@ Practice cloning gridentify html/css and basic js backbone (to be upgraded into 
 ## Important Concepts Used:
 
 jQuery interaction with DOM elements on HTML
+
 CSS styling and Bootstrap
+
 Graph traversal logic
+
 Implementation of stack data structure and undo/backtracking
+
 Event listeners
 
-Future Steps:
+#### Future Steps:
+
 Implement mySQL database for score system
+
 Play around with various displays of gridentify solvers
