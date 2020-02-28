@@ -80,6 +80,10 @@
   background-color: rgb(165, 255, 145);
 }
 
+.disabled{
+  pointer-events: none;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

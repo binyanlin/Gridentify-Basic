@@ -149,7 +149,7 @@ const addScore = (scoreArray) => {
   };
 }
 
-//onClick events section
+//Event Listener section
 
 //adds class selected on anything held down and hovered over
 $(document).on("mousedown", ".box", function() {
@@ -215,6 +215,36 @@ $(document).on("mouseup", ".box", function() {
 
 $(document).on("mouseleave", ".grid", function() {
     clearFunc();
+});
+
+//applies a modal with an input field for assigning name
+$(document).on("click", "#changeName", function() {
+  $('#myModal').modal("show");
+});
+
+$(document).on("click", "#saveNickName", function() {
+  let user = $("#nickname").val().trim();
+  if (user !== null && user !== "") {
+    localStorage.setItem("user", user);
+    $("#changeName").text("Change Nickname");
+    $("#nameDisplay").text(user);
+    $(".disabled").removeClass("d-none");
+  } else {
+    $(".disabled").addClass("d-none");
+    localStorage.removeItem("user");
+    $("#changeName").text("Add Nickname");
+  }
+  $('#myModal').modal("hide");
+});
+
+$(document).ready(function() {
+  let user = localStorage.getItem("user");
+  if (user) {
+    $("#nickname").val(user);
+    $("#changeName").text("Change Nickname");
+    $("#nameDisplay").text(user);
+    $(".disabled").removeClass("d-none");
+  }
 });
 
 
