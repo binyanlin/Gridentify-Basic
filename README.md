@@ -2,7 +2,7 @@
 
 ### Live link: https://binyanlin.github.io/Gridentify-Basic/
 
-![gridentify image](https://i.imgur.com/gz3HaUO.png)
+[![gridentify image](https://i.imgur.com/gz3HaUO.png)][https://binyanlin.github.io/Gridentify-Basic/]
 
 Practice cloning gridentify html/css and basic js backbone
 
