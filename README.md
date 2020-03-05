@@ -2,7 +2,7 @@
 
 https://binyanlin.github.io/Gridentify-Basic/
 
-Practice cloning gridentify html/css and basic js backbone (to be upgraded into react framework after)
+Practice cloning gridentify html/css and basic js backbone
 
 ## Important Concepts Used:
 
