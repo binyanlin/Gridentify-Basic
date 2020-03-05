@@ -104,13 +104,13 @@ const gameOver = (board) => {
     for (let j=0; j<5; j++) {
       if (j>0) {
         if (board[i][j] == board[i][j-1]) {
-          console.log(i, j, board[i][j], board[i][j-1], "left");
+          // console.log(i, j, board[i][j], board[i][j-1], "left");
           return false;
         }
       }
       if (i>0) {
         if (board[i][j] == board[i-1][j]) {
-          console.log(i,j, board[i][j], board[i-1][j], "up");
+          // console.log(i,j, board[i][j], board[i-1][j], "up");
           return false;
         }
       }
