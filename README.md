@@ -1,6 +1,6 @@
 # Gridentify-Basic
 
-https://binyanlin.github.io/Gridentify-Basic/
+### Live link: https://binyanlin.github.io/Gridentify-Basic/
 
 ![gridentify image](https://i.imgur.com/gz3HaUO.png)
 
